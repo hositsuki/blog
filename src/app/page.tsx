@@ -1,39 +1,68 @@
-import Link from 'next/link'
+import { Metadata } from 'next'
+import { generateSeoMetadata } from '@/components/Seo'
+import { getAllPosts } from '@/lib/posts'
+import PostCard from '@/components/PostCard'
+
+export const metadata: Metadata = generateSeoMetadata({
+  title: '雪桜さゆ',
+  description: '程序员，热爱技术与文学。专注于法律、金融和技术领域的学习与探索。',
+})
 
 export default function Home() {
+  const posts = getAllPosts().slice(0, 4) // 只显示最新的4篇文章
+
   return (
-    <div className="space-y-12">
-      <section className="space-y-4">
-        <h1 className="text-4xl font-bold">Welcome to My Blog</h1>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">
-          Sharing thoughts on technology, life, and everything in between.
+    <div className="space-y-16">
+      <div className="space-y-6">
+        <h1 className="text-4xl font-bold">你好，我是雪桜さゆ 👋</h1>
+        <p className="text-xl text-zinc-600 dark:text-zinc-400">
+          一个热爱技术与文学的程序员，目前在日本生活和工作。我在攻读法学学位，备考 CFA。
+          热衷于探索技术、法律和金融的交叉领域，同时也是一名业余诗人和作家。
         </p>
-      </section>
-
-      <section className="space-y-8">
-        <h2 className="text-2xl font-semibold">Recent Posts</h2>
-        <div className="space-y-4">
-          {/* We'll populate this with real posts later */}
-          <article className="group">
-            <Link href="/posts/hello-world" className="block space-y-2">
-              <time className="text-sm text-zinc-500">January 19, 2025</time>
-              <h3 className="text-xl font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                Hello World
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400">
-                Welcome to my new blog where I'll be sharing my thoughts and experiences.
-              </p>
-            </Link>
-          </article>
+        <div className="flex gap-6">
+          <a
+            href="https://github.com/hositsuki"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://twitter.com/DawnSayu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            Twitter
+          </a>
+          <a
+            href="mailto:yukisakuranoyume@gmail.com"
+            className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            Email
+          </a>
         </div>
-      </section>
+      </div>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">About Me</h2>
-        <p className="text-zinc-600 dark:text-zinc-400">
-          I'm a passionate creator sharing my journey and insights. This blog is my digital garden where I cultivate ideas and share experiences.
-        </p>
-      </section>
+      {posts.length > 0 && (
+        <div className="space-y-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold">最新文章</h2>
+            <a
+              href="/posts"
+              className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+            >
+              查看全部 →
+            </a>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {posts.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

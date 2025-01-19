@@ -2,25 +2,90 @@ export const metadata = {
   title: 'Hello World',
   date: '2025-01-19',
   description: 'Welcome to my new blog where I\'ll be sharing my thoughts and experiences.',
+  tags: ['技术', '随笔']
 }
 
 # Hello World
 
-Welcome to my new blog! This is where I'll be sharing my thoughts, experiences, and insights about technology, life, and everything in between.
+欢迎来到我的博客！在这里，我会分享我的技术见解、经验和思考。
 
-## Why Start a Blog?
+## 为什么要写博客？
 
-In this digital age, having a personal space to share ideas and connect with others is more important than ever. This blog will serve as my digital garden - a place where I can cultivate ideas, share experiences, and engage with readers who share similar interests.
+在这个数字时代，拥有一个分享想法和与他人交流的个人空间比以往任何时候都重要。这个博客将作为我的数字花园 - 一个培育想法、分享经验并与志同道合的读者交流的地方。
 
-## What to Expect
+## 博客功能展示
 
-Here's what you can expect to find on this blog:
+这个博客使用 Next.js 14 构建，支持多种功能：
 
-- Technical articles and tutorials
-- Personal experiences and lessons learned
-- Thoughts on current trends and technologies
-- Book reviews and recommendations
+```typescript
+// 文章元数据类型定义
+type Post = {
+  slug: string
+  title: string
+  date: string
+  description: string
+  content: string
+  tags: string[]
+}
 
-## Let's Connect
+// 获取所有文章
+export function getAllPosts(): Post[] {
+  // 实现文章获取逻辑
+  return posts
+}
+```
 
-I'm excited to start this journey and looking forward to connecting with you. Feel free to reach out through the comments or social media.
+### Markdown 支持
+
+博客支持完整的 Markdown 语法：
+
+#### 列表
+- 技术文章和教程
+- 个人经验和心得
+- 当前技术趋势的思考
+- 书籍推荐
+
+#### 表格
+| 功能 | 描述 | 状态 |
+|------|------|------|
+| MDX 支持 | 在 Markdown 中使用 React 组件 | 
+| 代码高亮 | 使用 Prism.js 实现语法高亮 | 
+| 深色模式 | 支持自动和手动切换主题 | 
+
+### 代码块支持
+
+你可以在文章中插入各种语言的代码块：
+
+```python
+def hello_world():
+    print("Welcome to my blog!")
+    return True
+
+if __name__ == "__main__":
+    hello_world()
+```
+
+```javascript
+// React 组件示例
+function Welcome({ name }) {
+  return (
+    <div className="greeting">
+      <h1>Hello, {name}!</h1>
+      <p>Welcome to my blog</p>
+    </div>
+  );
+}
+```
+
+## 未来计划
+
+以下是我计划在博客上分享的内容：
+
+1. 技术教程和最佳实践
+2. 个人项目开发经验
+3. 读书笔记和思考
+4. 生活感悟
+
+## 一起交流
+
+我很高兴能开始这段旅程，也期待与你交流。欢迎通过评论或社交媒体与我联系！

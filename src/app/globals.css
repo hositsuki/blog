@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../styles/prism.css';
+
 :root {
+  --font-geist-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-geist-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -12,6 +18,46 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+/* 目录样式 */
+.table-of-contents {
+  @apply mb-8 rounded-lg border bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900;
+}
+
+.table-of-contents > :first-child {
+  @apply mb-2 font-bold;
+}
+
+.table-of-contents ul {
+  @apply ml-4 list-none;
+}
+
+.table-of-contents li {
+  @apply my-1;
+}
+
+.toc-link {
+  @apply text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #404040;
 }
 
 body {
